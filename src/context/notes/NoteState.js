@@ -84,7 +84,6 @@ const NoteState = (props) => {
     // Add a Note
       const addNote = (title, description, tag) =>{
         //TODO: API CALL
-        console.log("Adding a new note");
         const note = {
             "_id": "666fdb2863772692b46d62279",
             "user": "666d59155db436c1c38ce9ef",
@@ -98,12 +97,13 @@ const NoteState = (props) => {
       }
 
     // Delete a Note
-      const deleteNote = () =>{
-        
+      const deleteNote = (id) =>{
+        const newNotes = notes.filter((note)=>{return note._id!==id});
+        setNotes(newNotes);
       }
 
     // Edit a Note
-      const editNote = () =>{
+      const editNote = (id, title, description, tag) =>{
         
       }
 
