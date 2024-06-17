@@ -39,6 +39,42 @@ const NoteState = (props) => {
           "tag": "personal",
           "date": "2024-06-17T06:43:52.814Z",
           "__v": 0
+        },
+        {
+            "_id": "666fdb2863772692b46d6279",
+            "user": "666d59155db436c1c38ce9ef",
+            "title": "My Title",
+            "description": "Please wake up early!",
+            "tag": "personal",
+            "date": "2024-06-17T06:43:52.123Z",
+            "__v": 0
+        },
+        {
+            "_id": "666fdb2863772692b46d6279",
+            "user": "666d59155db436c1c38ce9ef",
+            "title": "My Title",
+            "description": "Please wake up early!",
+            "tag": "personal",
+            "date": "2024-06-17T06:43:52.123Z",
+            "__v": 0
+        },
+        {
+            "_id": "666fdb2863772692b46d6279",
+            "user": "666d59155db436c1c38ce9ef",
+            "title": "My Title",
+            "description": "Please wake up early!",
+            "tag": "personal",
+            "date": "2024-06-17T06:43:52.123Z",
+            "__v": 0
+        },
+        {
+            "_id": "666fdb2863772692b46d6279",
+            "user": "666d59155db436c1c38ce9ef",
+            "title": "My Title",
+            "description": "Please wake up early!",
+            "tag": "personal",
+            "date": "2024-06-17T06:43:52.123Z",
+            "__v": 0
         }
       ]
 
