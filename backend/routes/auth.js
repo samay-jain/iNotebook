@@ -19,10 +19,13 @@ router.post(
     }),
   ],
   async (req, res) => {
+
+    let success = false;
+
     //If there are errors return bad request and the errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({success, errors: errors.array() });
     }
 
     try {
@@ -31,7 +34,7 @@ router.post(
       if (user) {
         return res
           .status(400)
-          .json({ error: "Sorry a user with this email already exists" });
+          .json({success, error: "Sorry a user with this email already exists" });
       }
 
       //generating salt using bcrypt package
@@ -53,7 +56,8 @@ router.post(
 
       //signing auth token
       const authToken = jwt.sign(data, JWT_SECRET);
-      res.json({authToken});
+      success = true;
+      res.json({success, authToken});
     } 
     //Catching errors and displaying it on the console
     catch (error) {
@@ -76,6 +80,8 @@ router.post(
     ],
     async (req, res) => {
 
+        let success = false;
+
         //If there are errors return bad request and the errors
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -88,14 +94,15 @@ router.post(
             let user = await User.findOne({email});
             if(!user)
             {
-                return res.status(400).json({error: "Please try to login with correct credentials"});
+                return res.status(400).json({success, error: "Please try to login with correct credentials"});
             }
 
             //comparing hashed password with bcrypt hashed password
             const passwordCompare = await bcrypt.compare(password, user.password);
             if(!passwordCompare)
-                return res.status(400).json({error: "Please try to login with correct credentials"});
-
+            {
+              return res.status(400).json({success, error: "Please try to login with correct credentials"});
+            }
 
             const data = {
                 user:{
@@ -104,7 +111,8 @@ router.post(
               }
               //signing auth token
               const authToken = jwt.sign(data, JWT_SECRET);
-              res.json({authToken});
+              success = true;
+              res.json({success, authToken});
 
 
         } 
@@ -124,7 +132,6 @@ router.post(
     '/getuser',
     fetchuser, 
     async (req, res) => {
-
 
         try {
             const userId = req.user.id;
