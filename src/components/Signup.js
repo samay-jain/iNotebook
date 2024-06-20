@@ -25,7 +25,7 @@ const Signup = (props) => {
           if(json.success)
           {
             //save auth token and redirect to home page
-            localStorage.setItem('token', json.authtoken);
+            localStorage.setItem('token', json.authToken);
             navigate("/");
             props.showAlert("Account created successfully", "success");
           }

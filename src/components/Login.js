@@ -26,7 +26,9 @@ const Login = (props) => {
           if(json.success)
           {
             //save auth token and redirect to home page
-            localStorage.setItem('token', json.authtoken);
+            const token = json.authToken;
+            console.log("Hello I am a token:"+ token);
+            localStorage.setItem('token', token);
             navigate("/");
             props.showAlert("Logged in successfully", "success");
 
