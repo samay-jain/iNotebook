@@ -1,15 +1,22 @@
 import React from "react";
 import {
     Link,
-    useLocation
+    useLocation,
+    useNavigate
   } from "react-router-dom";
 
 
 const Navbar = () => {
+  let navigate = useNavigate();
   let location = useLocation();
   // useEffect(()=>{
   //   console.log(location.pathname)
   // },[location]);
+
+  const handleLogout = ()=>{
+    localStorage.removeItem('token');
+    navigate('/login');
+  }
 
 
   return (
@@ -41,43 +48,15 @@ const Navbar = () => {
                 About
               </Link>
             </li>
-            <li className="nav-item dropdown">
-              <Link
-                className="nav-link dropdown-toggle"
-                to="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Dropdown
-              </Link>
-              <ul className="dropdown-menu">
-                <li>
-                  <Link className="dropdown-item" to="#">
-                    Action
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="#">
-                    Another action
-                  </Link>
-                </li>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="#">
-                    Something else here
-                  </Link>
-                </li>
-              </ul>
-            </li>
           </ul>
 
-          <form className="d-flex" role="search">
-            <Link className="btn btn-primary mx-1" to='/login' role="button">Login</Link>
-            <Link className="btn btn-primary mx-1" to='/signup' role="button">Signup</Link>
-          </form>
+          {!localStorage.getItem('token')?
+              <form className="d-flex" role="search">
+                <Link className="btn btn-primary mx-1" to='/login' role="button">Login</Link>
+                <Link className="btn btn-primary mx-1" to='/signup' role="button">Signup</Link>
+              </form>
+              : <button onClick={handleLogout} className="btn btn-primary">Logout</button>
+          }
         </div>
       </div>
     </nav>
